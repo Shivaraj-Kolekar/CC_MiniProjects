@@ -1,6 +1,8 @@
 from fastapi import FastAPI, Depends, HTTPException
 from pydantic import BaseModel
 from typing import List
+from fastapi.middleware.cors import CORSMiddleware
+
 from sqlalchemy import create_engine, Column, Float, String, Integer
 from sqlalchemy.orm import declarative_base, sessionmaker, Session
 # from models.students_models import Student
@@ -8,6 +10,15 @@ from sqlalchemy.orm import declarative_base, sessionmaker, Session
 # from models.course_models import Course
 app = FastAPI()
 
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 SQLALCHEMY_DATABASE_URL = 'sqlite+pysqlite:///./db.sqlite3'
 engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True, future=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
