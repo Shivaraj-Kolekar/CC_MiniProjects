@@ -10,10 +10,14 @@ function Header () {
       </Link>
       <div className='space-x-2'>
         <Link to='/students'>
-          <Button size={'lg'}>Students</Button>
+          <Button className={'bg-white text-black'} size={'lg'}>
+            Students
+          </Button>
         </Link>
         <Link to='/courses'>
-          <Button size='lg'>Courses</Button>
+          <Button className={'bg-white text-black'} size='lg'>
+            Courses
+          </Button>
         </Link>
       </div>
     </div>
